@@ -1,22 +1,24 @@
 <?php
-	/**生成验证码的类，验证码个数为4个
-	@file authcode.class.php
-	@author hhq
-	@class name:AuthCode
+	/**
+	*生成验证码的类，验证码个数为4个
+	*@file authcode.class.php
+	*@author hhq
+	*@class name:AuthCode
 	*/
 
 	class AuthCode {
-		private $width;			//
-		private $height;		//
-		private $authImage;		//
-		private $codeCount;		//
-		private $authString;		//
+		private $width;				//图片的宽度
+		private $height;			//图片的高度
+		private $authImage;			//验证码图片
+		private $codeCount;			//验证码数量
+		private $authString;		//验证码字符串
 		
-		/**构造方法，初始化各个参数
-		 参数列表
-		 @param int $width	//设置验证码图片的宽度，默认值为90像素
-		 @param int $height 	//设置验证码图片的高度，默认值为30像素
-		 @param	int codeCount	//设置验证码的个数，默认值为4个
+		/**
+		*构造方法，初始化各个参数
+		*参数列表
+		*@param int $width	//设置验证码图片的宽度，默认值为90像素
+		*@param int $height 	//设置验证码图片的高度，默认值为30像素
+		*@param	int codeCount	//设置验证码的个数，默认值为4个
 		 */
 		public function __construct($width=90, $height=30, $codeCount=4) {
 			$this->width = $width;
@@ -29,6 +31,8 @@
 		private function createAuthString() {
 			$code = "23456789abcdefghijkmnpqrstuvwxyABCDEFGHIJKMNPQRSTUVWXY";
 			$str = "";
+
+			//生成随机验证码
 			for($codeIndex = 0; $codeIndex != $this->codeCount; ++$codeIndex) {
 				$authChar = $code{rand(0, strlen($code)-1)};
 
