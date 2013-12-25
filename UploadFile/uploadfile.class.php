@@ -1,10 +1,10 @@
 <?php
 	/**
-	filaname:uploadfile.class.php
-	文件上传类 UploadFile
-	本类实现上传文件的功能，支持单个文件上传，也支持多个文件上传
-	author:HHQ
-	date:2013/12/06
+	*filaname:uploadfile.class.php
+	*文件上传类 UploadFile
+	*本类实现上传文件的功能，支持单个文件上传，也支持多个文件上传
+	*author:HHQ
+	*date:2013/12/06
 	*/
 
 	class UploadFile {

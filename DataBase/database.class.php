@@ -1,8 +1,9 @@
 <?php
-	/**file:database.class.php
-		数据库处理类,通过PDO类写出自己的数据库类,便于支持多种数据库和防SQL注入
-		实现数据库的连接、断开，增删查改等相关操作
-		author:hhq
+	/*
+	*file:database.class.php
+	*数据库处理类,通过PDO类写出自己的数据库类,便于支持多种数据库和防SQL注入
+	*实现数据库的连接、断开，增删查改等相关操作
+	*author:hhq
 	*/
 
 	class DataBase {

@@ -20,3 +20,7 @@ A class implement some operation in database.This class implement with PDO class
 12.17-12.18
 authcode.class.php
 A class create a authcode image.The code count is 4,and I have add some disturb elements in the background.
+
+12.24-12.25
+calendar.class.php
+A class display a calendar.User can choose a certain year and month to adjust the calendar with a select scroller or a anchor.

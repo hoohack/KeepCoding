@@ -1,9 +1,9 @@
 <?php
 	/**
-	  文件名:page.class.php
-	  一个实现分页的类Page
-	 @author hhq
-	  */
+	*文件名:page.class.php
+	*一个实现分页的类Page
+	*@author hhq
+	 */
 	class Page {
 		private $totalCount;		//数据表总记录数
 		private $pageNumber;		//当前页数
@@ -15,10 +15,10 @@
 		private $uri;			//用户请求的URL
 
 		/**
-		  构造函数
-		  参数介绍
-		  pageRows默认为10
-		  query是查询的参数，即url后面通过GET得到的参数列表
+		*构造函数
+		*参数介绍
+		*pageRows默认为10
+		*query是查询的参数，即url后面通过GET得到的参数列表
 		  */
 		public function __construct($totalCount, $pageRows=10, $query="") {
 			$this->pageRows = $pageRows;
