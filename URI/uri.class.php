@@ -16,7 +16,7 @@
 
 		/*构造方法，初始化参数内容*/
 		public function __construct() {
-			$this->uri_setments = array();
+			$this->uri_segments = array();
 			$this->route_setments = array();
 			$this->uri_string = array();
 		}

@@ -28,3 +28,7 @@ A class display a calendar.User can choose a certain year and month to adjust th
 12.27-12.28
 uri.class.php
 A class that parse uris and determins routing.
+
+1.11-1.12
+router.class
+A class implement forward the uri that the user request.Then the system load the controller and method to run the system.
