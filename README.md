@@ -5,6 +5,7 @@ PHP Common Function Libary
 
 To write down some common function in php.Try to package it as a class in order to facilitate.
 
+2013
 12.6-12.9
 uploadfile.class.php-powered by hhq
 A class implement upload image file.It support upload one file or several files in a time.
@@ -29,6 +30,11 @@ A class display a calendar.User can choose a certain year and month to adjust th
 uri.class.php
 A class that parse uris and determins routing.
 
+2014
 1.11-1.12
 router.class
 A class implement forward the uri that the user request.Then the system load the controller and method to run the system.
+
+5.6
+copy_dir function
+A function that can copy directory.

@@ -17,7 +17,7 @@
 		private $driveropt;				//PDO类的参数选项
 		private $stmt;					//PDO准备语句
 
-		public function __construct($dsn="mysql:dbname=test;host=127.0.0.1", $username="root", $password="root", $dbname="test", $driveropt=false) {
+		public function __construct($dsn="mysql:dbname=SCAUZF;host=127.0.0.1", $username="root", $password="root", $dbname="SCAUZF", $driveropt=false) {
 			$this->dsn = $dsn;
 			$this->username = $username;
 			$this->password = $password;
@@ -57,7 +57,7 @@
 			$this->stmt = $this->dbh->prepare($SQLStatement);
 
 			$this->stmt->execute($param);
-			print_r($param);
+			// print_r($param);
 			if($this->stmt) {
 				return true;
 			}else {
