@@ -1,14 +1,14 @@
 <?php
-	/*
-	*UUID class
-	*return uuid
-	*@author hhq
+	/**
+	* UUID class
+	* return uuid
+	* @author hhq
 	*/
 	class UUID {
-		/*
-		*getv3 function
-		*返回版本3的UUID，形式如：xxxxxxxx-xxxx-3xxx-x(8|9|a|b)xxx-xxxxxxxxxxxx
-		*@author hhq
+		/**
+		* getv3 function
+		* 返回版本3的UUID，形式如：xxxxxxxx-xxxx-3xxx-x(8|9|a|b)xxx-xxxxxxxxxxxx
+		* @author hhq
 		*/
 		public static function getv3() {
 			$microtime = microtime();
@@ -46,12 +46,12 @@
 			
 		}
 
-		/*
-		*adjust_length function
-		*@param string string 字符串参数
-		*@param num    length 调整的长度
-		*调整string的长度为length
-		*@author hhq
+		/**
+		* adjust_length function
+		* @param string string 字符串参数
+		* @param num    length 调整的长度
+		* 调整string的长度为length
+		* @author hhq
 		*/
 		public static function adjust_length(&$string, $length) {
 			$strlen = strlen($string);
