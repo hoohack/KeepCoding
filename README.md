@@ -38,3 +38,7 @@ A class implement forward the uri that the user request.Then the system load the
 5.6
 copy_dir function
 A function that can copy directory.
+
+5.10
+uuid class
+A class generate a uuid code in version 3
