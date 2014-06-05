@@ -1,10 +1,10 @@
 <?php
 	/**
-	*filaname:uploadfile.class.php
-	*文件上传类 UploadFile
-	*本类实现上传文件的功能，支持单个文件上传，也支持多个文件上传
-	*author:HHQ
-	*date:2013/12/06
+	* filaname:uploadfile.class.php
+	* 文件上传类 UploadFile
+	* 本类实现上传文件的功能，支持单个文件上传，也支持多个文件上传
+	* @author HHQ
+	* date:2013/12/06
 	*/
 
 	class UploadFile {
@@ -33,10 +33,10 @@
 		}
 
 		/**
-		  当为私有属性直接赋值时调用的赋值函数，并可以屏蔽掉非法值
-		  成员属性名:propertyName
-		  成员属性值:propertyValue
-		  要求检查permitSize,allType两个属性
+		  * 当为私有属性直接赋值时调用的赋值函数，并可以屏蔽掉非法值
+		  * 成员属性名:propertyName
+		  * 成员属性值:propertyValue
+		  * 要求检查permitSize,allType两个属性
 		  */
 		public function __set($propertyName, $propertyValue) {
 			if($propertyName == "permitSize") {
@@ -63,8 +63,8 @@
 		}
 		
 		/**
-		  在直接获取属性值时自动调用一次，以属性名作为参数传入处理
-		  成员属性名:propertyName
+		  * 在直接获取属性值时自动调用一次，以属性名作为参数传入处理
+		  * 成员属性名:propertyName
 		  */
 		public function __get($propertyName) {
 			return $this->$propertyName;
@@ -267,5 +267,5 @@
 
 	}
 /**
-  end of this class file
-  */
+  *end of this class file
+*/
