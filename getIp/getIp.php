@@ -1,5 +1,6 @@
 <?php
 	/**
+	* 2014-6-5
 	* 获取用户真实IP
 	* @return string
 	* @author hhq
