@@ -42,3 +42,7 @@ A function that can copy directory.
 5.10
 uuid class
 A class generate a uuid code in version 3
+
+6-24
+phpass class
+A third party library.
