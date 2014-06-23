@@ -1,2 +1,2 @@
 <?php
-    
+   include 'PasswordHash.php'; 
