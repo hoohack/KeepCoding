@@ -1,0 +1,50 @@
+document introduction
+directory name $dir = '/home/hhq/html';
+print the document structure of the directory
+
+main_shadow.gif
+widgetsep.png
+bg.jpg
+article.html
+sidebar_shadow.gif
+type.html
+header_black.jpg
+addArticle.html
+archive.html
+simditor
+    |_scripts
+        |_js
+            |_uploader.js
+            |_simditor-all.min.js
+            |_simditor.min.js
+            |_jquery.min.js
+            |_simditor-all.js
+            |_module.js
+            |_simditor.js
+        |_coffee
+            |_module.coffee
+            |_simditor.coffee
+            |_uploader.coffee
+    |_images
+        |_loading-upload.gif
+        |_image.png
+    |_styles
+        |_simditor.scss
+        |_font-awesome.css
+        |_simditor.css
+    |_fonts
+        |_FontAwesome.otf
+        |_fontawesome-webfont.svg
+        |_fontawesome-webfont.ttf
+        |_fontawesome-webfont.eot
+        |_fontawesome-webfont.woff
+about.html
+style.css
+editPassword.html
+validateComment.html
+light.gif
+index.html
+comment.gif
+commentpoint.png
+footer.jpg
+sidesep.gif
