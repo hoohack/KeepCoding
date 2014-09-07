@@ -41,3 +41,26 @@ function test() {
 * 该策略主要用于处理大数组。对于小数组而言，相比于标准循环所带来的性能提升很小，因此仅当你注意到
 * 性能的瓶颈是有循环处理大量元素项所引起的时，才应该尝试使用Duff策略。
 */
+
+//改进版本
+var iterations = 21;            //总循环次数
+var n = iterations / 8;         //循环轮数
+var caseTest = iterations % 8;  //额外余量
+if (caseTest > 0) {
+    do {
+        test();
+    } while(--caseTest > 0);
+}
+
+do {
+    test();
+    test();
+    test();
+    test();
+    test();
+    test();
+    test();
+    test();
+} while(--iterations > 0);
+
+//减少switch判断以提高性能
