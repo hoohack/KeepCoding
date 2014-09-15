@@ -1,0 +1,47 @@
+<!-- 下图绿色区域的宽度为100%，其中有三个矩形，第一个矩形的宽度是200px，第二个和第三个矩形的宽度相等。请使用CSS3中的功能实现它们的布局。 -->
+<html>
+	<head>
+		<meta charset="utf8">
+		<style type="text/css">
+			/*box-flex的含义在于规定框是否具有可伸缩尺寸。
+			1、当box-flex=0时，框的空间固定而不伸缩;
+			2、当box-flex=n时，框的空间大约会按照剩余宽度的n/m伸缩，m为所有设定了box-flex值的和;
+			3、当给有flex的box设定了大小时，该box将拥有设定的空间与flex分配的空间之和。
+
+			例如父元素有500的空间，其中五个元素设定flex为1，则五个元素的宽度均为100；一个设置为flex:0、宽度180，则剩下的元素均分320的宽度，也即每个80；一个设置flex:6，则该元素分的6/10的宽度即300，剩余的元素各分1/10的宽度即50；一个元素设定为flex:1，同时设定宽度100，则该元素分得100+(500-100)/5=180的宽度，剩余的元素分的(500-100)/5=80的宽度。
+
+			（实测发现这里并不是很准确，准确的说当设置了flex的元素内部没有其他元素时，框的宽度会按照box-flex设置的那样按比例填充，但如果有元素和边距等情况，这个比例就仅仅是个大约的值了。）
+
+			实际上box-flex是个特别有用的工具，其一劳永逸的解决了当一个box中有元素有固定值，而又要求剩下的元素按比例浮动的情况。像这种问题之前都是使用绝对定位，将固定的元素采取 absolute 定位的方式，然后剩下的元素使用margin留出浮动元素留下的位子。但是当固定的元素过多且混杂出现时，使用绝对定位的方法将不能优雅的解决这个问题，那么flex模型就能展现它的力量了。
+*/
+			.box {
+				background-color: #619B99;
+				display: -webkit-box;
+				height: 40px;
+				padding: 10px;
+				padding-right: 0px;
+				width: 100%;
+			}
+
+			.box > div {
+				height: 40px;
+				background-color: #EEEEEE;
+				margin-right: 10px;
+				-webkit-box-flex: 1;
+			}
+
+			.box > div:first-of-type {
+				width: 200px;
+				-webkit-box-flex: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="img.jpg">
+		<div class="box">
+			<div class="item">coloumn 1</div>
+			<div class="item">coloumn 2</div>
+			<div class="item">coloumn 3</div>
+		</div>
+	</body>
+</html>
