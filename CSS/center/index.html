@@ -1,0 +1,46 @@
+<!-- 有两个盒子 A、B，B 在 A 盒子中，它们的 css 是这么定义的：
+
+A {
+    position:relative;
+    width:500px;
+    height: 500px;
+    background-color:green;
+}
+B {
+    position:absolute;
+    max-width:300px;
+    max-height:300px;
+    background-color:blue;
+}
+如何实现 B 在 A 中水平方向和垂直方向居中 -->
+<html>
+	<head>
+		<meta charset="utf8">
+		<style type="text/css">
+			.A {
+			    position:relative;
+			    width:500px;
+			    height: 500px;
+			    background-color:green;
+			}
+			.B {
+			    position:absolute;
+			    max-width:300px;
+			    max-height:300px;
+			    margin: auto;
+			    top: 0;
+			    left: 0;
+			    bottom: 0;
+			    right: 0;
+			    background-color:blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="A">
+			<div class="B">
+
+			</div>
+		</div>
+	</body>
+</html>
