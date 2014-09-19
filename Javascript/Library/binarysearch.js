@@ -4,6 +4,11 @@ function BinarySearch(val, arr) {
         low = 0,
         high = len - 1,
         mid = 0;
+        
+    if (val < arr[low] || val > arr[high]) {
+        return -1;
+    }
+    
     while (low <= high) {
         mid = Math.floor((low + high) / 2);
 
