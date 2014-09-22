@@ -34,8 +34,8 @@
 		protected static function HeapAdjust(&$list, $low, $high) {
 			$temp = $list[$low];
 
-
-			for ($i= 2 * $low; $i <= $high; $i *= 2) {
+			//数组下标从0开始，所以孩子节点为2*i+1
+			for ($i= (2*$low) + 1; $i <= $high; $i = (2*$i) + 1) {
 				//沿关键字较大的孩子节点向下筛选
 				if ($i < $high && ($list[$i] < $list[$i + 1])) {
 					++$i;//i为关键字较大的记录的下标
