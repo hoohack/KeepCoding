@@ -12,10 +12,18 @@
 
 	//输出目录结构
 	function printStructure($dir, $level) {
+		if (is_file($dir)) {
+			echo $dir;
+		}
+
+		if (!is_dir($dir)) {
+			return;
+		}
+
 		//打开目录
 		$handle = opendir($dir);
 		//逐个打开文件
-		while (($file = readdir($handle)) !== FALSE) {
+		while (FALSE !== ($file = readdir($handle))) {
 			//过滤..与.
 			if($file != '..' && $file != '.') {
 				//输出前导空格
@@ -40,7 +48,7 @@
 	}
 
 	// $dir = '/home/hhq/data/test';
-	$dir = '/home/hhq/html';
+	$dir = '/home/hhq/www/hhqBlog/';
 
 	//判断目录是否存在
 	if(is_dir($dir)) {
