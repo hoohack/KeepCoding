@@ -1,12 +1,15 @@
 <?php
 	/*
-	*file:database.class.php
-	*数据库处理类,通过PDO类写出自己的数据库类,便于支持多种数据库和防SQL注入
-	*实现数据库的连接、断开，增删查改等相关操作
-	*author:hhq
+	* file:database.class.php
+	* 数据库处理类,通过PDO类写出自己的数据库类,便于支持多种数据库和防SQL注入
+	* 实现数据库的连接、断开，增删查改等相关操作
+	* 使用单例模式实现，防止实例化多次浪费资源
+	* @author:hhq
 	*/
 
-	class DataBase {
+	class Database {
+		private static $uniqueInstance;
+
 		private $username;				//用户名
 		private $password;				//密码
 		private $SQLStatement;			//SQL语句
@@ -16,8 +19,9 @@
 		private $dsn;					//数据源名，即不同的数据库模式如mysql,orcle
 		private $driveropt;				//PDO类的参数选项
 		private $stmt;					//PDO准备语句
-
-		public function __construct($dsn="mysql:dbname=SCAUZF;host=127.0.0.1", $username="root", $password="root", $dbname="SCAUZF", $driveropt=false) {
+		
+		//私有构造方法
+		private function __construct($dsn="mysql:dbname=test;host=127.0.0.1", $username="root", $password="root", $dbname="test", $driveropt=false) {
 			$this->dsn = $dsn;
 			$this->username = $username;
 			$this->password = $password;
@@ -35,18 +39,19 @@
 			//将返回的空字符串转换为SQL的NULL
 			$this->dbh->setAttribute(PDO::ATTR_ORACLE_NULLS, true);
 		}
-
-		public function __set($propertyName, $propertyValue) {
-			$this->$propertyName = $propertyValue;
-		}
-
-		public function __get($propertyName) {
-			if($propertyName == "password") {
-				return null;
-			}else {
-				return $this->$propertyName;
+	
+		//公有静态方法，通过此方法返回唯一实例
+		public static function getInstance() {
+			if (self::$uniqueInstance === null) {
+				self::$uniqueInstance = new self;
 			}
+
+			return self::$uniqueInstance;
 		}
+		
+		//克隆函数必须声明为私有的，防止外部程序new类从而失去单例模式的意义
+		private function __clone(){}
+		private function __wakeup(){}
 
 		/**执行数据库的增，改，删，即没有结果集
 			先进行PDO的预处理，然后执行一个准备好的预处理查询
@@ -105,7 +110,4 @@
 			$this->dbh = null;
 			$this->stmt = null;
 		}
-
 	}
-
-/**end of this class*/
