@@ -8,7 +8,7 @@
 		include 'database.class.php';
 
 		//新建一个数据库对象
-		$db = new Database();
+		$db = Database::getInstance();
 
 		//需要插入的内容
 		// $param = array(":title" => "test",
