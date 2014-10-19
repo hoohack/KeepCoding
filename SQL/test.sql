@@ -1,6 +1,6 @@
 //数据库表role(name, create_time(timestamp))
 //找出两个日期之间注册的用户和数量
-//DATE_FORMAT(date, '%Y-%m-%d)格式化日期信息
+//DATE_FORMAT(date, '%Y-%m-%d')格式化日期信息
 SELECT name, COUNT(*) as a_count
 FROM role
 WHERE create_time > '2014-09-01' AND create_time < '2014-10-10'

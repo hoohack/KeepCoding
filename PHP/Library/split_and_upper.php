@@ -1,13 +1,8 @@
 <?php
 	function split_and_upper($str) {
-		$arr = explode('_', $str);
-		print_r($arr);
-		foreach ($arr as &$val) {
-			$val = ucfirst($val);
-		}
-
-		$result = implode($arr, '');
-
+		$str = str_replace('_', ' ', $str);
+        $str = ucwords($str);
+		$result = str_replace(' ', '', $str);
 		return $result;
 	}
 	$str = 'abc_def_ghi';
