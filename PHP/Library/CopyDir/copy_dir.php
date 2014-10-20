@@ -13,8 +13,8 @@
         $result = false;
 
         //如果是文件
-        if(is_file($source)) {
-            if($dest[strlen($dest)-1] == DIRECTORY_SEPARATOR) {
+        if (is_file($source)) {
+            if (is_dir($dest)) {
             	//如果目标位置是目录，设置目标路径和文件名
                 $dest_path = $dest . DIRECTORY_SEPARATOR . basename($source);
             }else {
@@ -26,7 +26,7 @@
             $result = @copy($source, $dest_path);
             @chmod($source, 0664);
         }elseif (is_dir($source)) {//如果source是目录
-            if($dest[strlen($dest)-1] == DIRECTORY_SEPARATOR) {
+            if(is_dir($dest)) {
             	//如果dest是目录，则根据source设置dest的值
                 $dest = $dest . basename($source);
                 @mkdir($dest, 0777);
