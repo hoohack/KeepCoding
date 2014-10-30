@@ -105,6 +105,34 @@
 			}
 		}
 
+		public function select() {
+
+		}
+
+		public function update() {
+
+		}
+
+		public function delete() {
+
+		}
+
+		public function where() {
+
+		}
+
+		public function from() {
+
+		}
+
+		public function num_rows() {
+
+		}
+
+		public function last_query() {
+			
+		}
+
 		//断开连接
 		public function close() {
 			$this->dbh = null;
