@@ -17,7 +17,7 @@
 		*/
 		public function getInstance() {
 			//如果instance属性为空，则创建一个对象示例并保存到instance属性中
-			if (self::$instance === null) {
+			if ( ! (self::$instance instanceof self)) {
 				self::$instance = new self();
 			}
 
