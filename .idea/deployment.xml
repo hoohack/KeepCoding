@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="KeepCoding_PHP">
+    <serverData>
+      <paths name="KeepCoding_PHP">
+        <serverdata>
+          <mappings>
+            <mapping deploy="PHP" local="$PROJECT_DIR$/PHP" web="/KeepCoding/PHP" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
+

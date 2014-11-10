@@ -27,3 +27,5 @@
 		echo '';
         $qq[] = $matches[0];
     }
+
+    print_r($qq);
