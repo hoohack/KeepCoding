@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deafe69a-bb5f-45c6-ad3d-309b68a08331" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PHP/checkMail.php" afterPath="$PROJECT_DIR$/PHP/checkMail.php" />
-    </list>
+    <list default="true" id="deafe69a-bb5f-45c6-ad3d-309b68a08331" name="Default" comment="" />
     <ignored path="KeepCoding.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
