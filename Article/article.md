@@ -5,3 +5,5 @@
 [HTML5+AJAX上传多张图片(转)](http://www.aintnot.com/blog/?p=29)
 
 [Laravel学习笔记（一）安装配置](http://www.aintnot.com/blog/?p=34)
+
+[LARAVEL学习笔记（二）路由](http://www.aintnot.com/blog/?p=44)
