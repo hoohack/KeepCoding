@@ -9,3 +9,5 @@
 [LARAVEL学习笔记（二）路由](http://www.aintnot.com/blog/?p=44)
 
 [Linux添加路径到PATH环境变量中](http://www.aintnot.com/blog/?p=49)
+
+test
