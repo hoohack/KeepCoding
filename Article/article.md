@@ -7,3 +7,5 @@
 [Laravel学习笔记（一）安装配置](http://www.aintnot.com/blog/?p=34)
 
 [LARAVEL学习笔记（二）路由](http://www.aintnot.com/blog/?p=44)
+
+[Linux添加路径到PATH环境变量中](http://www.aintnot.com/blog/?p=49)
