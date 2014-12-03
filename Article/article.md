@@ -10,4 +10,6 @@
 
 [Linux添加路径到PATH环境变量中](http://www.aintnot.com/blog/?p=49)
 
+[OpenSUSE设置开机启动Apache和MySQL服务](http://www.aintnot.com/blog/?p=51)
+
 test
