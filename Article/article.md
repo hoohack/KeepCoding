@@ -15,3 +15,5 @@
 [OPENSUSE下开启APACHE重写模块](http://www.aintnot.com/blog/?p=58)
 
 [MYSQL 报错”#1366 – INCORRECT INTEGER VALUE: ” FOR COLUMN ‘ID’ AT ROW 1″解决](http://www.aintnot.com/blog/?p=60)
+
+[Laravel学习笔记（三）分页](http://www.aintnot.com/blog/?p=64)
