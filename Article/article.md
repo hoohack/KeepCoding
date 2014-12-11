@@ -17,3 +17,5 @@
 [MYSQL 报错”#1366 – INCORRECT INTEGER VALUE: ” FOR COLUMN ‘ID’ AT ROW 1″解决](http://www.aintnot.com/blog/?p=60)
 
 [Laravel学习笔记（三）分页](http://www.aintnot.com/blog/?p=64)
+
+[LARAVEL学习笔记（四）–LARAVEL中REDIRECT::GUEST REDIRECT::INTENDED 方法的使用](http://www.aintnot.com/blog/?p=7)
