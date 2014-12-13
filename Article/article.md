@@ -21,3 +21,5 @@
 [LARAVEL学习笔记（四）–LARAVEL中REDIRECT::GUEST REDIRECT::INTENDED 方法的使用](http://www.aintnot.com/blog/?p=7)
 
 [MYSQL查询今天、昨天、7天、近30天、本月、上一月的数据](http://www.aintnot.com/blog/?p=73)
+
+[Laravel学习笔记（五）--Redirect带数据](http://www.aintnot.com/blog/?p=75)
