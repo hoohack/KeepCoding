@@ -23,3 +23,5 @@
 [MYSQL查询今天、昨天、7天、近30天、本月、上一月的数据](http://www.aintnot.com/blog/?p=73)
 
 [Laravel学习笔记（五）--Redirect带数据](http://www.aintnot.com/blog/?p=75)
+
+[JQuery的click函数执行多次](http://www.aintnot.com/blog/?p=78)
