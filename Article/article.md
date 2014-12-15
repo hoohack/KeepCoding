@@ -25,3 +25,5 @@
 [Laravel学习笔记（五）--Redirect带数据](http://www.aintnot.com/blog/?p=75)
 
 [JQuery的click函数执行多次](http://www.aintnot.com/blog/?p=78)
+
+[Javascript常用正则表达式](http://www.aintnot.com/blog/?p=86)
