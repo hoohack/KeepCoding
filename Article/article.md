@@ -27,3 +27,5 @@
 [JQuery的click函数执行多次](http://www.aintnot.com/blog/?p=78)
 
 [Javascript常用正则表达式](http://www.aintnot.com/blog/?p=86)
+
+[PHP中echo,print,print_r,var_dump的区别](http://www.aintnot.com/blog/?p=89)
