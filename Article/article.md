@@ -31,3 +31,5 @@
 [PHP中echo,print,print_r,var_dump的区别](http://www.aintnot.com/blog/?p=89)
 
 [PHP中的预定义变量总结](http://www.aintnot.com/blog/?p=91)
+
+[mysql自增(AUTO_INCREMENT)ID的起始值修改与设置](http://www.aintnot.com/blog/?p=101)
