@@ -35,3 +35,5 @@
 [mysql自增(AUTO_INCREMENT)ID的起始值修改与设置](http://www.aintnot.com/blog/?p=101)
 
 [最新省市县(区)行政区划代码数据库](http://www.aintnot.com/blog/?p=99)
+
+[Git中gitignore失效的问题](http://www.aintnot.com/blog/?p=108)
