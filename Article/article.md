@@ -39,3 +39,5 @@
 [Git中gitignore失效的问题](http://www.aintnot.com/blog/?p=108)
 
 [mysql性能优化总结](http://www.aintnot.com/blog/?p=110)
+
+[CodeIgniter在Redirect方法中传递数据](http://www.aintnot.com/blog/?p=112)
