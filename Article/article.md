@@ -41,3 +41,5 @@
 [mysql性能优化总结](http://www.aintnot.com/blog/?p=110)
 
 [CodeIgniter在Redirect方法中传递数据](http://www.aintnot.com/blog/?p=112)
+
+[JQuery实现页面局部刷新](http://www.aintnot.com/blog/?p=119)
