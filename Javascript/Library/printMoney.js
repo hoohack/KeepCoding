@@ -3,20 +3,22 @@
 function printMoney(number) {
 	if (typeof number !== 'number') {
 		throw 'Not Number';
-	} else {
-		var len = number.toString().length,
+	}
+	else
+	{
+		var number_str = number.toString(),
+			len = number_str.length,
 			temp_arr = [];
-		for (var i = 0; i < len; i++) {
-			temp_arr[i] = number.toString().substring(i, i + 1);
-		}
-		for (var i = len, j = 0; i > 0; i--, j++) {
-			if (j > 0 && j % 3 === 0) {
-				temp_arr.splice(i, 0, ',');
-			}
+		for (var i = len; i > 3; i-= 3) {
+			temp_arr.unshift(number_str.slice(i-3, i));
 		}
 	}
-	return temp_arr;
+	if (i > 0)
+	{
+		temp_arr.unshift(number_str.slice(0, i));
+	}
+	return temp_arr.join(',');
 }
 
 var result = printMoney(1234567);
-console.log(result.join(''));
+console.log(result);
