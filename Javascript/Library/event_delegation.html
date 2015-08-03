@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件委托</title>
+</head>
+<body>
+	<div id="test">
+		<ul id="parent">
+			<li id="li1">aaa</li>
+			<li id="li2">bbb</li>
+			<li id="li3">ccc</li>
+			<li id="li4">ddd</li>
+			<li id="li5">eee</li>
+			<li id="li6">fff</li>
+			<li id="li7">ggg</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var parent = document.getElementById('parent');
+		parent.addEventListener('click', function(e) {
+			alert(e.target.id);
+			alert(e.target.innerHTML);
+		});
+	</script>
+</body>
+</html>
