@@ -6,52 +6,59 @@
  * @Last Modified time: 2015-09-14 17:22:52
  */
 //curl批处理demo
-
-$max_size = 100;
-$mh = curl_multi_init();
-$options_arr = array(
-	CURLOPT_HEADER => 0,
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => 1,
-	CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36'	
-);
-for ($i = 0; $i < $max_size; $i++)
-{
-	$ch = curl_init();
-	$options_arr[CURLOPT_URL] = 'http://www.zhihu.com/people/' . $user_list[$i] . '/about';
-	curl_setopt_array($ch, $options_arr);
-	$requestMap[$i] = $ch;
-	curl_multi_add_handle($mh, $ch);
-}
-
-do {
-	//执行请求
-	while (($cme = curl_multi_exec($mh, $active)) == CURLM_CALL_MULTI_PERFORM);
-
-	if ($cme != CURLM_OK) {break;}
-
-	//获取当前解析的cURL的相关传输信息
-	while ($done = curl_multi_info_read($mh))
+	function getGoodsName($result)
 	{
-		//获取一个cURL连接资源句柄的信息
-		$info = curl_getinfo($done['handle']);
-
-		//如果设置了CURLOPT_RETURNTRANSFER，则返回获取的输出的文本流
-		$tmp_result = curl_multi_getcontent($done['handle']);
-		
-		//返回一个保护当前会话最近一次错误的字符串
-		$error = curl_error($handle['handle']);
-
-		//do some thing with $tmp_result
-		
-		//移除curl批处理句柄资源中的某个句柄资源
-		curl_multi_remove_handle($mh, $done['handle']);
+		preg_match('#<h2 class="til">(.*?)</h2>#', $result, $out);
+		return empty($out[1]) ? '' : $out[1];
 	}
-	if ($active)
-	{
-		//等待所有cURL批处理中的活动连接，此函数会阻塞，直到cURL批处理连接中有活动连接
-		curl_multi_select($mh, 10);
-	}
-} while ($active);
-//关闭连接
-curl_multi_close($mh);
+
+	$prefix = 'http://www.up24.com/goods_detail?goods_id=';
+    $aURLs = array();
+    for ($i = 436; $i <= 560; $i++)
+    {
+        $aURLs[] = $i;
+    }
+	// $aURLs = array(312, 533, 233, 236, 534, 560, 351, 391, 349, 350, 519, 320, 321, 322, 323, 324); // array of URLs
+
+    $master = curl_multi_init(); // init the curl Multi
+    
+    $aCurlHandles = array(); // create an array for the individual curl handles
+
+    foreach ($aURLs as $id=>$url) { //add the handles for each url
+        $ch = curl_init(); // init curl, and then setup your options
+        curl_setopt($ch, CURLOPT_URL, $prefix . $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // returns the result - very important
+        curl_setopt($ch, CURLOPT_HEADER, 0); // no headers in the output
+        curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        $aCurlHandles[$url] = $ch;
+        curl_multi_add_handle($master,$ch);
+    }
+
+    $goods_name_list = array();
+    do {
+        while (($execrun = curl_multi_exec($master, $running)) == CURLM_CALL_MULTI_PERFORM) ;
+        if ($execrun != CURLM_OK)
+            break;
+        // a request was just completed -- find out which one
+        while ($done = curl_multi_info_read($master)) {
+        	// get the info and content returned on the request
+            $info = curl_getinfo($done['handle']);
+            var_dump($info);
+            $output = curl_multi_getcontent($done['handle']);
+            if (empty(getGoodsName($output)))
+            {
+                print_r($info);
+            }
+            $goods_name_list[] = getGoodsName($output);
+            curl_multi_remove_handle($master, $done['handle']);
+        }
+
+        if ($running)
+        {
+        	curl_multi_select($master, 30);
+        }
+    } while($running);
+    curl_multi_close($master);
+    echo "<pre>";
+    print_r($goods_name_list);
