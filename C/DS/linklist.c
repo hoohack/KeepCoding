@@ -1,43 +1,37 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define OK 1
-#define ERROR 0
-
-typedef int Status;
-typedef int ElemType;
-
-typedef struct Node{
-    ElemType value;
-    struct Node *next;
-}Node, *LinkList;
-
+#include "linklist.h"
 
 Status
-Init( LinkList *head )
+Init( LinkList **head )
 {
-    *head = ( LinkList )malloc( sizeof( Node ) );
-    if( *head == NULL )
+    LinkList *node = ( LinkList *)malloc( sizeof( LinkList ) );
+    if( node == NULL )
     {
         return ERROR;
     }
-    (*head)->next = NULL;
+    *head = node;
     return OK;
 }
 
 Status
-Insert( LinkList list, const ElemType value )
+Insert( LinkList **list, const ElemType value )
 {
-    LinkList new_node = ( LinkList )malloc( sizeof( Node ) );
-    LinkList q = NULL, p = NULL;
+    LinkList *new_node = ( LinkList * )malloc( sizeof( LinkList ) );
+    if( new_node == NULL )
+    {
+        return ERROR;
+    }
+    LinkList *q = NULL, *p = NULL;
     new_node->value = value;
     new_node->next = NULL;
-    if( list->next == NULL )
+    if( (*list)->next == NULL )
     {
-        list->next = new_node;
+        (*list)->next = new_node;
         return OK;
     }
-    p = list->next;
+    p = (*list);
     q = p->next;
     while( q->next != NULL && q->value < value )
     {
@@ -55,33 +49,49 @@ Insert( LinkList list, const ElemType value )
 }
 
 Status
-IsEmpty( LinkList list )
+Delete( LinkList **list, const ElemType value )
+{
+    LinkList *current = *list;
+    LinkList *p = NULL;
+    if( current->next == NULL )
+    {
+        return ERROR;
+    }
+    p = current;
+    current = current->next;
+    while( current && current->value != value )
+    {
+        p = current;
+        current = current->next;
+    }
+    if( current != NULL )
+    {
+       p->next = current->next; 
+    }
+
+    free( current );
+
+    return OK;
+}
+
+Status
+Find( LinkList *list, const ElemType value )
+{
+    LinkList *current = list;
+    if( current->next == NULL )
+    {
+        return ERROR;
+    }
+    while( current && current->value != value )
+    {
+        current = current->next;
+    }
+
+    return current != NULL ? OK : ERROR;
+}
+
+Status
+IsEmpty( LinkList *list )
 {
     return list->next == NULL;
-}
-
-void
-PrintList(  LinkList L)
-{
-    while( L )
-    {
-        printf("%d ", L->value);
-        L = L->next;
-    }
-
-    printf("\n");
-}
-
-int
-main()
-{
-    LinkList *head = NULL;
-    Init(head);
-    return 0;
-    int i = 0;
-    for( i = 0; i < 10; ++i )
-    {
-        Insert(*head, i);
-    }
-    PrintList(*head);
 }

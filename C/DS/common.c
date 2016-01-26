@@ -2,12 +2,13 @@
 #include <stdio.h>
 
 void
-PrintList( const LinkList L)
+PrintList(  LinkList *list)
 {
-    while( L )
+    LinkList *p = list->next;
+    while( p != NULL )
     {
-        printf("%d ", L->value);
-        L = L->next;
+        printf("%d ", p->value);
+        p = p->next;
     }
 
     printf("\n");

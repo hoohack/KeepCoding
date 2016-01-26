@@ -1,7 +1,10 @@
-#ifndef _COMMON_H
+#ifndef _Common_H
+
+#define _Common_H
+
 #include "linklist.h"
 
-
 void
-PrintList( const LinkList List);
-#endif
+PrintList(  LinkList *list);
+
+#endif /* _Common_H */
