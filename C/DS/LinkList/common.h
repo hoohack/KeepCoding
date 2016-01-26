@@ -4,7 +4,6 @@
 
 #include "linklist.h"
 
-void
-PrintList(  LinkList *list);
+void print_list(const LinkList *list); /* 打印链表 */
 
 #endif /* _Common_H */

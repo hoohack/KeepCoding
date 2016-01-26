@@ -1,15 +1,12 @@
 #include "common.h"
 #include <stdio.h>
 
-void
-PrintList(  LinkList *list)
+/**
+ * 打印链表
+ */
+void print_list(const LinkList *list)
 {
-    LinkList *p = list->next;
-    while( p != NULL )
-    {
-        printf("%d ", p->value);
-        p = p->next;
-    }
-
+    while( (list = list->next) != NULL )
+        printf("%2d ", list->value);
     printf("\n");
 }

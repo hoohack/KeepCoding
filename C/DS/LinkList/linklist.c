@@ -3,95 +3,82 @@
 
 #include "linklist.h"
 
-Status
-Init( LinkList **head )
+/**
+ * 初始化链表
+ */
+Status init(LinkList **head)
 {
-    LinkList *node = ( LinkList *)malloc( sizeof( LinkList ) );
-    if( node == NULL )
-    {
-        return ERROR;
-    }
+    LinkList *node = (LinkList *)malloc(sizeof(LinkList));
+    if( node == NULL ) return ERROR;
+
     *head = node;
     return OK;
 }
 
-Status
-Insert( LinkList **list, const ElemType value )
+/**
+ * 插入value到链表中
+ */
+Status insert(LinkList **list, ElemType value)
 {
-    LinkList *new_node = ( LinkList * )malloc( sizeof( LinkList ) );
-    if( new_node == NULL )
-    {
-        return ERROR;
-    }
-    LinkList *q = NULL, *p = NULL;
+	LinkList *current = NULL;
+	LinkList *new_node = NULL;
+
+	list = &(*list)->next;
+
+	while((current = *list) != NULL && current->value < value)
+		list = &current->next;
+
+    new_node = (LinkList *)malloc(sizeof(LinkList));
+    if( new_node == NULL ) return ERROR;
     new_node->value = value;
-    new_node->next = NULL;
-    if( (*list)->next == NULL )
-    {
-        (*list)->next = new_node;
-        return OK;
-    }
-    p = (*list);
-    q = p->next;
-    while( q->next != NULL && q->value < value )
-    {
-        p = p->next;
-        q = p->next;
-    }
-    if( q->next == NULL )
-    {
-        q->next = new_node;
-        return OK;
-    }
-    p->next = new_node;
-    new_node->next = q;
+
+	new_node->next = current;
+	*list = new_node;
+
     return OK;
 }
 
-Status
-Delete( LinkList **list, const ElemType value )
+/**
+ * 删除链表中的value值
+ */
+Status remove_by_val(LinkList **list, ElemType value)
 {
     LinkList *current = *list;
-    LinkList *p = NULL;
-    if( current->next == NULL )
+    LinkList *previous = NULL;
+
+    while(current != NULL && current->value != value)
     {
-        return ERROR;
-    }
-    p = current;
-    current = current->next;
-    while( current && current->value != value )
-    {
-        p = current;
+		previous = current;
         current = current->next;
     }
+
     if( current != NULL )
-    {
-       p->next = current->next; 
-    }
+       previous->next = current->next;
+	else
+		return FALSE;
 
-    free( current );
+    free(current);
 
-    return OK;
+    return TRUE;
 }
 
-Status
-Find( LinkList *list, const ElemType value )
+/**
+ * 在链表中查找value值
+ */
+Status find(const LinkList *list, ElemType value)
 {
-    LinkList *current = list;
-    if( current->next == NULL )
-    {
-        return ERROR;
-    }
-    while( current && current->value != value )
-    {
-        current = current->next;
-    }
+	list = list->next;
 
-    return current != NULL ? OK : ERROR;
+    while( list != NULL && list->value != value )
+        list = list->next;
+
+    return list != NULL ? TRUE : FALSE;
 }
 
-Status
-IsEmpty( LinkList *list )
+/**
+ * 判断链表是否为空
+ */
+Status is_empty(LinkList *list)
 {
-    return list->next == NULL;
+	return list->next == NULL;
 }
