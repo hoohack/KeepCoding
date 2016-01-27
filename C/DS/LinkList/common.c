@@ -6,7 +6,7 @@
  */
 void print_list(const LinkList *list)
 {
-    while( (list = list->next) != NULL )
-        printf("%2d ", list->value);
-    printf("\n");
+	while( (list = list->next) != NULL )
+		printf("%2d ", list->value);
+	printf("\n");
 }

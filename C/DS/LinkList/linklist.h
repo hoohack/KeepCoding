@@ -10,8 +10,8 @@ typedef int Status;
 typedef int ElemType;
 
 typedef struct node{
-    ElemType value;	/* 结点值 */
-    struct node *next;	/* 下一个结点的指针 */
+	ElemType value;	/* 结点值 */
+	struct node *next;	/* 下一个结点的指针 */
 }LinkList;
 
 Status init(LinkList **head);	/* 初始化链表 */

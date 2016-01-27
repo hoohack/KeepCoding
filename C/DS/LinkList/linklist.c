@@ -8,11 +8,11 @@
  */
 Status init(LinkList **head)
 {
-    LinkList *node = (LinkList *)malloc(sizeof(LinkList));
-    if( node == NULL ) return ERROR;
+	LinkList *node = (LinkList *)malloc(sizeof(LinkList));
+	if( node == NULL ) return ERROR;
 
-    *head = node;
-    return OK;
+	*head = node;
+	return OK;
 }
 
 /**
@@ -28,14 +28,14 @@ Status insert(LinkList **list, ElemType value)
 	while((current = *list) != NULL && current->value < value)
 		list = &current->next;
 
-    new_node = (LinkList *)malloc(sizeof(LinkList));
-    if( new_node == NULL ) return ERROR;
-    new_node->value = value;
+	new_node = (LinkList *)malloc(sizeof(LinkList));
+	if( new_node == NULL ) return ERROR;
+	new_node->value = value;
 
 	new_node->next = current;
 	*list = new_node;
 
-    return OK;
+	return OK;
 }
 
 /**
@@ -43,23 +43,23 @@ Status insert(LinkList **list, ElemType value)
  */
 Status remove_by_val(LinkList **list, ElemType value)
 {
-    LinkList *current = *list;
-    LinkList *previous = NULL;
+	LinkList *current = *list;
+	LinkList *previous = NULL;
 
-    while(current != NULL && current->value != value)
-    {
+	while(current != NULL && current->value != value)
+	{
 		previous = current;
-        current = current->next;
-    }
+		current = current->next;
+	}
 
-    if( current != NULL )
-       previous->next = current->next;
+	if( current != NULL )
+		previous->next = current->next;
 	else
 		return FALSE;
 
-    free(current);
+	free(current);
 
-    return TRUE;
+	return TRUE;
 }
 
 /**
@@ -69,10 +69,10 @@ Status find(const LinkList *list, ElemType value)
 {
 	list = list->next;
 
-    while( list != NULL && list->value != value )
-        list = list->next;
+	while( list != NULL && list->value != value )
+		list = list->next;
 
-    return list != NULL ? TRUE : FALSE;
+	return list != NULL ? TRUE : FALSE;
 }
 
 /**
