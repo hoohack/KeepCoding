@@ -18,7 +18,7 @@ Status init(LinkList **head)
 /**
  * 插入value到链表中
  */
-Status insert(LinkList **list, ElemType value)
+Status insert(LinkList **list, void *value)
 {
 	LinkList *current = NULL;
 	LinkList *new_node = NULL;
@@ -41,12 +41,12 @@ Status insert(LinkList **list, ElemType value)
 /**
  * 删除链表中的value值
  */
-Status remove_by_val(LinkList **list, ElemType value)
+Status remove_by_val(LinkList **list, void *value)
 {
-	LinkList *current = *list;
+	LinkList *current = (*list)->next;
 	LinkList *previous = NULL;
 
-	while(current != NULL && current->value != value)
+	while(current != NULL && *((int *)current->value) != *((int *)value))
 	{
 		previous = current;
 		current = current->next;
@@ -65,11 +65,11 @@ Status remove_by_val(LinkList **list, ElemType value)
 /**
  * 在链表中查找value值
  */
-Status find(const LinkList *list, ElemType value)
+Status find(const LinkList *list, void *value)
 {
 	list = list->next;
 
-	while( list != NULL && list->value != value )
+	while( list != NULL && *((int *)list->value) != *((int *)value))
 		list = list->next;
 
 	return list != NULL ? TRUE : FALSE;

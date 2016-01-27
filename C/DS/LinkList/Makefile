@@ -14,5 +14,6 @@ linklist.o: linklist.c
 common.o: common.c linklist.h
 	$(CC) -c common.c
 
+.PHONY:clean
 clean:
-	rm -rf $(obj) main
+	-rm -rf $(obj) main
