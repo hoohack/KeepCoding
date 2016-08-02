@@ -27,7 +27,7 @@ STACK_API Stack *create_stack()
 	Stack *new_stack = (Stack *)malloc(INIT_SIZE * sizeof(Stack));
 	check_stack_not_null(new_stack);
 
-	memset(new_stack, 0, sizeof(new_stack));
+	memset(new_stack, 0, sizeof(Stack));
 	new_stack->top = NULL;
 	new_stack->size = INIT_SIZE;
 	new_stack->curr_size = 0;

@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static inline void check_queue_malloc(Queue *q)
 {
@@ -27,6 +28,7 @@ QUEUE_API Queue *create_queue()
 	Queue *q = (Queue *)malloc(INIT_SIZE * sizeof(Queue));
 	check_queue_malloc(q);
 
+	memset(q, 0, sizeof(Queue));
 	q->head = NULL;
 	q->tail = NULL;
 	q->capacity = INIT_SIZE;
