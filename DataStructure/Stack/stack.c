@@ -1,7 +1,7 @@
+#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "stack.h"
 
 static void check_stack_not_null(Stack *s)
 {
