@@ -21,7 +21,7 @@ type SkipList struct {
 }
 
 func NewSkipNode() *SkipNode {
-	return &SkipNode{0, "", nil}
+	return &SkipNode{forward: make([]*SkipNode, MAX_LEVEL)}
 }
 
 func (skiplist *SkipList) MakeSkipNode(key int, value string) *SkipNode {
@@ -48,24 +48,21 @@ func NewSkipList() *SkipList {
 	return newskl
 }
 
-func CreateList() *SkipList {
-	return NewSkipList()
-}
-
-func (skiplist *SkipList) Insert(key int, value string) {
+func (skiplist *SkipList) Insert(key int, value string) *SkipNode {
 	update := make([]*SkipNode, MAX_LEVEL)
 	tmp := skiplist.header
 	i := skiplist.level
-	for i >= 1 {
+	for i >= 0 {
 		for tmp.forward[i] != nil && tmp.forward[i].key < key {
 			tmp = tmp.forward[i]
 		}
 		update[i] = tmp
 		i--
 	}
-	tmp = tmp.forward[1]
-	if tmp.key == key {
+	tmp = tmp.forward[0]
+	if tmp != nil && tmp.key == key {
 		tmp.value = value
+		return tmp
 	} else {
 		newLvl := skiplist.RandomLevel()
 		if newLvl > skiplist.level {
@@ -76,13 +73,17 @@ func (skiplist *SkipList) Insert(key int, value string) {
 			}
 			skiplist.level = newLvl
 		}
-		//newNode := skiplist.MakeSkipNode(key, value)
-		i := 1
+		tmp := skiplist.MakeSkipNode(key, value)
+		i := 0
 		for i < newLvl {
 			tmp.forward[i] = update[i].forward[i]
 			update[i].forward[i] = tmp
+			i++
 		}
+		skiplist.length++
 	}
+
+	return tmp
 }
 
 func (this *SkipList) GetLength() int {
@@ -110,8 +111,12 @@ func (skiplist *SkipList) Search(key int) (string, int) {
 
 func (*SkipList) RandomLevel() int {
 	level := 1
-	for rand.Float64() < 0.25 {
+	val := rand.Float64()
+
+	for val < 0.25 {
 		level++
+		val = rand.Float64()
+		fmt.Println(val)
 	}
 
 	if level < MAX_LEVEL {
@@ -147,7 +152,7 @@ func (skiplist *SkipList) Delete(key int) {
 }
 
 func main() {
-	skiplist := CreateList()
+	skiplist := NewSkipList()
 	key1 := 1
 	value1 := "apple"
 
@@ -174,4 +179,10 @@ func main() {
 	skiplist.Insert(key6, value6)
 
 	fmt.Println(skiplist)
+	x := skiplist.header
+	for x.forward[0] != nil {
+		fmt.Println(x.key)
+		fmt.Println(x.value)
+		x = x.forward[0]
+	}
 }
