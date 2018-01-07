@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 const MAX_LEVEL = 32
@@ -90,33 +91,38 @@ func (this *SkipList) GetLength() int {
 	return this.length
 }
 
-func (skiplist *SkipList) Search(key int) (string, int) {
+func (this *SkipList) GetLevel() int {
+	return this.level
+}
+
+func (skiplist *SkipList) Search(key int) *SkipNode {
 	if skiplist.GetLength() == 0 {
-		return "", 0
+		return nil
 	}
 	x := skiplist.header
-	for i := skiplist.level; i > 1; i-- {
-		for x.forward[i].key < key {
+	for i := skiplist.level; i >= 0; i-- {
+		for x.forward[i] != nil && x.forward[i].key < key {
 			x = x.forward[i]
 		}
 	}
 
-	x = x.forward[1]
-	if x.key == key {
-		return x.value, 1
-	} else {
-		return "", 0
+	x = x.forward[0]
+	if x != nil && x.key == key {
+		return x
 	}
+
+	return nil
 }
 
 func (*SkipList) RandomLevel() int {
 	level := 1
+	rand.Seed(time.Now().UTC().UnixNano())
 	val := rand.Float64()
 
 	for val < 0.25 {
 		level++
+		rand.Seed(time.Now().UTC().UnixNano())
 		val = rand.Float64()
-		fmt.Println(val)
 	}
 
 	if level < MAX_LEVEL {
@@ -126,33 +132,48 @@ func (*SkipList) RandomLevel() int {
 	}
 }
 
-func (skiplist *SkipList) Delete(key int) {
-	update := make([]SkipNode, MAX_LEVEL)
+func (skiplist *SkipList) Delete(key int) bool {
+	update := make([]*SkipNode, MAX_LEVEL)
 	tmp := skiplist.header
 
 	i := skiplist.level
-	for i > 1 {
-		if tmp.forward[i].key < key {
+	for i >= 0 {
+		for tmp.forward[i] != nil &&
+			tmp.forward[i].key < key {
 			tmp = tmp.forward[i]
 		}
+		update[i] = tmp
 		i--
 	}
-	tmp = tmp.forward[1]
-	if tmp.key == key {
-		i := 1
+	tmp = tmp.forward[0]
+	if tmp != nil && tmp.key == key {
+		i := 0
 		for i < skiplist.level {
-			if update[i].forward[i] == tmp {
+			if update[i].forward[i] != tmp {
 				break
-			} else {
-				update[i].forward[i] = tmp.forward[i]
 			}
+			update[i].forward[i] = tmp.forward[i]
 			i++
 		}
+
+		for skiplist.level > 1 &&
+			len(skiplist.header.forward) > skiplist.level &&
+			skiplist.header.forward[skiplist.level-1] == nil {
+			skiplist.level--
+		}
+		skiplist.length--
+
+		return true
 	}
+
+	return false
 }
 
 func main() {
 	skiplist := NewSkipList()
+	key0 := 0
+	value0 := "me"
+
 	key1 := 1
 	value1 := "apple"
 
@@ -171,6 +192,7 @@ func main() {
 	key6 := 6
 	value6 := "fruit"
 
+	skiplist.Insert(key0, value0)
 	skiplist.Insert(key1, value1)
 	skiplist.Insert(key2, value2)
 	skiplist.Insert(key3, value3)
@@ -178,11 +200,31 @@ func main() {
 	skiplist.Insert(key5, value5)
 	skiplist.Insert(key6, value6)
 
-	fmt.Println(skiplist)
-	x := skiplist.header
-	for x.forward[0] != nil {
-		fmt.Println(x.key)
-		fmt.Println(x.value)
-		x = x.forward[0]
+	skiplist.Delete(3)
+
+	beginLevel := 0
+	listLevel := skiplist.GetLevel()
+	for beginLevel < listLevel {
+		fmt.Println("level: ", beginLevel)
+		x := skiplist.header.forward[beginLevel]
+		for x.forward[beginLevel] != nil {
+			fmt.Println(x.key)
+			fmt.Println(x.value)
+			x = x.forward[beginLevel]
+		}
+		beginLevel++
 	}
+
+	node := skiplist.Search(2)
+	if node != nil {
+		fmt.Println("node 2 : ", node.value)
+	}
+
+	node2 := skiplist.Search(3)
+	if node2 != nil {
+		fmt.Println("node 2 : ", node2.value)
+	} else {
+		fmt.Println("node 3 : ", node2)
+	}
+
 }
