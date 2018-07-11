@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 	printf("send msg to server: \n");
 
 	fgets(send_line, BUFF_SIZE, stdin);
-	if (send(sockfd, send_line, strlen(send_line), 0) < 0) {
-		perror("send");
+	if (write(sockfd, send_line, strlen(send_line)) < 0) {
+		perror("write");
 		exit(-1);
 	}
 

@@ -8,6 +8,7 @@
 
 #define SERVER_PORT 9001
 #define MAX_BUFF_SIZE 4096
+#define MAX_BACK_LOG 1024
 
 int main()
 {
@@ -45,8 +46,8 @@ int main()
 		exit(-1);
 	}
 
-	if (listen(server_fd, 10) == -1) {
-		perror("bind error");
+	if (listen(server_fd, MAX_BACK_LOG) == -1) {
+		perror("listen error");
 		exit(-1);
 	}
 
@@ -58,9 +59,11 @@ int main()
 			continue;
 		}
 
+		printf("client %d connected, waiting for data\n", conn_fd);
+
 		n = read(conn_fd, buff, MAX_BUFF_SIZE);
 		buff[n] = '\0';
-		printf("recv msg from client: %s\n", buff);
+		printf("recv msg from client_%d: %s\n", conn_fd, buff);
 		close(conn_fd);
 	}
 
