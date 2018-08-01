@@ -6,3 +6,4 @@ out/
 *.o
 main
 *.class
+*.out
