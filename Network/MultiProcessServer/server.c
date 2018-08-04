@@ -13,14 +13,21 @@
 #define MAX_BUFF_SIZE 4096
 #define MAX_BACK_LOG 1024
 
+/*
+ * wait for child process to change state
+ */
 static void sigchld_handler(int sig)
 {
-	int status;
-	while (waitpid(-1, &status, WNOHANG) > 0)
-		;
+	int status = 0;
+	do {
+		if (waitpid(-1, &status, WNOHANG) == -1) {
+			perror("Fail to wait child process");
+			exit(-1);
+		}
+	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 }
 
-int handler_request(int client_fd)
+int handle_request(int client_fd)
 {
 	char buff[MAX_BUFF_SIZE];
 	int size = 0;
@@ -92,8 +99,6 @@ int main()
 
 	printf("server running...listen port %d\n", SERVER_PORT);
 
-	pid_t pid = 0;
-
 	while (1) {
 		if ((conn_fd = accept(server_fd, (struct sockaddr *)&clientaddr,
 				      &addr_len)) == -1) {
@@ -104,19 +109,38 @@ int main()
 			continue;
 		}
 
-		if ((pid = fork()) < 0) {
+		pid_t pid = 0;
+		if ((pid = fork()) != -1) {
 			perror("fork error");
 			exit(-1);
-		} else if (pid == 0) {
-			if (handler_request(conn_fd) == 0) {
-				return 0;
-			} else {
-				perror("handle request");
+		}
+
+		if (pid == 0) {
+			int handle_res = 0;
+			handle_res = handle_request(conn_fd);
+
+			if (close(conn_fd) == -1) {
+				perror("Fail to close client socket.");
 				exit(-1);
 			}
+
+			return handle_res;
+		}
+
+		/*
+		* Child process and parent process share thesocket fd.
+		* Parent process should close the fd, leave the child process
+		* to handle request.
+		*/
+		if (close(conn_fd) == -1) {
+			perror("Fail to close client socket.");
+			exit(-1);
 		}
 	}
 
-	close(server_fd);
+	if (close(server_fd) == -1) {
+		perror("Fail to close socket");
+		exit(-1);
+	}
 	return 0;
 }
